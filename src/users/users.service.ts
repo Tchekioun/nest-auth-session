@@ -21,8 +21,8 @@ export class UsersService {
     return user;
   }
 
-  findAll() {
-    return `This action returns all user`;
+  async findAll() {
+    return await this.prismaService.user.findMany();
   }
 
   async findByUsername(username: string): Promise<User | null> {
