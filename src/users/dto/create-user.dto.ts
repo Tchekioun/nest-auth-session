@@ -1,3 +1,4 @@
+import { Roles } from '@prisma/client';
 import {
   IsString,
   IsNotEmpty,
@@ -5,6 +6,7 @@ import {
   IsInt,
   MaxLength,
   IsOptional,
+  IsArray,
 } from 'class-validator';
 export class CreateUserDto {
   @IsString()
@@ -28,4 +30,7 @@ export class CreateUserDto {
   @MinLength(6)
   @MaxLength(255)
   password: string;
+
+  @IsArray()
+  roles: Roles;
 }

@@ -10,9 +10,7 @@ export class AuthenticatedGuard implements CanActivate {
       context.getHandler(),
       context.getClass(),
     ]);
-    if (isPublic) {
-      return true;
-    }
+    if (isPublic) return true;
     return await context.switchToHttp().getRequest().isAuthenticated();
   }
 }
