@@ -13,7 +13,7 @@ async function bootstrap() {
       secret: env.PASSWORD,
       resave: false,
       saveUninitialized: false,
-      cookie: { maxAge: 30000 },
+      cookie: { maxAge: 90000 },
     }),
   );
   app.use(passport.initialize());
