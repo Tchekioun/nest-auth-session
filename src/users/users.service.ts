@@ -35,7 +35,9 @@ export class UsersService {
     return user;
   }
   async findOne(id: number) {
-    const user = await this.prismaService.user.findFirst({ where: { id: id } });
+    const { password, ...user } = await this.prismaService.user.findFirst({
+      where: { id: id },
+    });
     return user;
   }
 
