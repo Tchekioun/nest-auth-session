@@ -10,6 +10,7 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   login() {
+    console.log('somebody logged in Bro');
     return { message: 'Welcome' };
   }
   @HasRoles(Roles.ADMIN, Roles.USER)
@@ -17,5 +18,10 @@ export class AuthController {
   hello(@Request() req): string {
     // console.log(req);
     return req.user;
+  }
+  @Get('logout')
+  logout(@Request() req): string {
+    // console.log(req);
+    return req.session.destroy();
   }
 }
