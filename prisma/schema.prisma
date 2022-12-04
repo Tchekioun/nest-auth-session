@@ -21,6 +21,13 @@ model User {
   roles     Roles[]  @default([USER])
 }
 
+model Client {
+  id           Int     @id @default(autoincrement())
+  denomination String?
+  phoneNumber  String
+  phoneNumber2 String?
+}
+
 enum Roles {
   ADMIN
   USER
