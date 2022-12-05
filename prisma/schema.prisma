@@ -24,7 +24,7 @@ model User {
 model Client {
   id           Int     @id @default(autoincrement())
   denomination String?
-  phoneNumber  String
+  phoneNumber  String  @unique
   phoneNumber2 String?
 }
 
