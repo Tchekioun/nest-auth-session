@@ -15,9 +15,10 @@ async function bootstrap() {
       saveUninitialized: false,
       cookie: { maxAge: 90000 },
     }),
-  );
-  app.use(passport.initialize());
-  app.use(passport.session());
+    );
+    app.use(passport.initialize());
+    app.use(passport.session());
+    app.enableCors();
   await app.listen(3000);
 }
 bootstrap();

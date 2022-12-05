@@ -20,8 +20,9 @@ export class AuthController {
     return req.user;
   }
   @Get('logout')
-  logout(@Request() req): string {
+  logout(@Request() req): any {
     // console.log(req);
-    return req.session.destroy();
+    req.session.destroy();
+    return {message: 'you have been logged out successfully'};
   }
 }
