@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { ClientsService } from './clients.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
@@ -25,9 +26,9 @@ export class ClientsController {
     return this.clientsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.clientsService.findOne(+id);
+  @Get(':phoneNumber')
+  findByPhoneNumber(@Param('phoneNumber') phoneNumber: string) {
+    return this.clientsService.findByPhoneNumber(phoneNumber);
   }
 
   @Patch(':id')

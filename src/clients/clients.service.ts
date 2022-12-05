@@ -18,6 +18,12 @@ export class ClientsService {
   findOne(id: number) {
     return `This action returns a #${id} client`;
   }
+  findByPhoneNumber(phoneNumber: string) {
+    const client = this.prismaService.client.findUnique({
+      where: { phoneNumber },
+    });
+    return client;
+  }
 
   update(id: number, updateClientDto: UpdateClientDto) {
     return `This action updates a #${id} client`;
