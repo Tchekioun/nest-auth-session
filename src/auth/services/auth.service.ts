@@ -24,4 +24,10 @@ export class AuthService {
   }
 
   login(user: User) {}
+
+  async logout(req, res) {
+    await req.session.destroy();
+    await res.clearCookie('connect.sid');
+    return { message: 'you have been logged out successfully' };
+  }
 }

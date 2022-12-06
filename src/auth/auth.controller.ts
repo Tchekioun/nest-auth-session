@@ -1,11 +1,20 @@
-import { Controller, Request, Get, Post, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Request,
+  Response,
+  Get,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { Roles } from '@prisma/client';
 import { HasRoles } from './decorators/permissions.decorator';
 import { Public } from './decorators/public.decorator';
 import { LocalAuthGuard } from './guards/local-auth.guard';
+import { AuthService } from './services/auth.service';
 
 @Controller()
 export class AuthController {
+  constructor(private authService: AuthService) {}
   @Public()
   @UseGuards(LocalAuthGuard)
   @Post('login')
@@ -20,9 +29,8 @@ export class AuthController {
     return req.user;
   }
   @Get('logout')
-  logout(@Request() req): any {
+  logout(@Request() req, @Response({ passthrough: true }) res): any {
     // console.log(req);
-    req.session.destroy();
-    return {message: 'you have been logged out successfully'};
+    return this.authService.logout(req, res);
   }
 }
