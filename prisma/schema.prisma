@@ -28,6 +28,11 @@ model Client {
   phoneNumber2 String?
 }
 
+model Workshop{
+  id Int @id @default(autoincrement())
+  name String @unique
+}
+
 enum Roles {
   ADMIN
   USER
