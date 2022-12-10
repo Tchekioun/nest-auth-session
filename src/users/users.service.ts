@@ -22,7 +22,17 @@ export class UsersService {
   }
 
   async findAll() {
-    return await this.prismaService.user.findMany();
+    return await this.prismaService.user.findMany({
+      select: {
+        id: true,
+        fullname: true,
+        username: true,
+        age: true,
+        createdAt: true,
+        updatedAt: true,
+        roles: true,
+      },
+    });
   }
 
   async findByUsername(username: string): Promise<User | null> {

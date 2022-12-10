@@ -10,6 +10,7 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Public } from 'src/auth/decorators/public.decorator';
 
 @Controller('users')
 export class UsersController {
@@ -19,7 +20,7 @@ export class UsersController {
   create(@Body() data: CreateUserDto) {
     return this.usersService.create(data);
   }
-
+  @Public()
   @Get()
   findAll() {
     return this.usersService.findAll();

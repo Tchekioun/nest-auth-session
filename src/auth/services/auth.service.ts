@@ -16,14 +16,12 @@ export class AuthService {
       password,
       user.password,
     );
-    if (user && isMatched) {
+    if (isMatched) {
       const { password, ...rest } = user;
       return rest;
     }
     return null;
   }
-
-  login(user: User) {}
 
   async logout(req, res) {
     await req.session.destroy();
