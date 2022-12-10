@@ -5,6 +5,8 @@ import {
   Get,
   Post,
   UseGuards,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { Roles } from '@prisma/client';
 import { HasRoles } from './decorators/permissions.decorator';
@@ -28,6 +30,7 @@ export class AuthController {
     // console.log(req);
     return req.user;
   }
+  @HttpCode(HttpStatus.NO_CONTENT)
   @Get('logout')
   logout(@Request() req, @Response({ passthrough: true }) res): any {
     // console.log(req);
