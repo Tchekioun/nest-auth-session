@@ -1,8 +1,9 @@
-import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { env } from 'process';
+import { NestFactory } from '@nestjs/core';
 import * as passport from 'passport';
 import * as session from 'express-session';
-import { env } from 'process';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
@@ -15,10 +16,18 @@ async function bootstrap() {
       saveUninitialized: false,
       cookie: { maxAge: 90000 },
     }),
-    );
-    app.use(passport.initialize());
-    app.use(passport.session());
-    app.enableCors();
+  );
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.enableCors();
+  const config = new DocumentBuilder()
+    .setTitle('raouf Auth project')
+    .setDescription(
+      'this my API for CRUD operations, using session for authentications and guards for authorization',
+    )
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
   await app.listen(3000);
 }
 bootstrap();
