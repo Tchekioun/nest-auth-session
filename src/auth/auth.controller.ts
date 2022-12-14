@@ -20,9 +20,9 @@ export class AuthController {
   @Public()
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  login() {
+  login(@Request() req) {
     console.log('somebody logged in Bro');
-    return { message: 'Welcome' };
+    return { message: 'Welcome', roles: req.user.roles };
   }
   @HasRoles(Roles.ADMIN, Roles.USER)
   @Get('protected')
