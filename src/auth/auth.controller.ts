@@ -25,12 +25,7 @@ export class AuthController {
     console.log('somebody logged in Bro');
     return { message: 'Welcome', roles: req.user.roles };
   }
-  @HasRoles(Roles.ADMIN, Roles.USER)
-  @Get('protected')
-  hello(@Request() req): string {
-    // console.log(req);
-    return req.user;
-  }
+
   @HttpCode(HttpStatus.NO_CONTENT)
   @Get('logout')
   logout(@Request() req, @Response({ passthrough: true }) res): any {
