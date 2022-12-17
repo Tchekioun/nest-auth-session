@@ -3,9 +3,10 @@ import { Roles } from '@prisma/client';
 import { HasRoles } from './auth/decorators/permissions.decorator';
 
 @Controller()
+@HasRoles(Roles.ADMIN)
 export class AppController {
-  @HasRoles(Roles.USER)
   @Get('protected')
+  @HasRoles(Roles.USER)
   hello(@Request() req): string {
     // console.log(req);
     return req.user;
