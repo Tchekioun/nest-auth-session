@@ -11,10 +11,11 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.use(
     session({
+      name: 'sid',
       secret: env.PASSWORD,
       resave: false,
       saveUninitialized: false,
-      cookie: { maxAge: 90000 },
+      cookie: { maxAge: 3600000 },
     }),
   );
   app.use(passport.initialize());

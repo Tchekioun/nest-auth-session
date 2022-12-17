@@ -23,7 +23,12 @@ export class AuthController {
   @Post('login')
   login(@Request() req) {
     console.log('somebody logged in Bro');
-    return { message: 'Welcome', roles: req.user.roles };
+    return {
+      message: 'Welcome',
+      roles: req.user.roles,
+      sid: req.sessionID,
+      others: req.session,
+    };
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)
