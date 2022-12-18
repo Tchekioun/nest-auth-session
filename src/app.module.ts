@@ -7,8 +7,9 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ClientsModule } from './clients/clients.module';
 import { APP_FILTER } from '@nestjs/core';
 import { MyExceptionFilter } from './exceptionFilters/exception.filter';
+import { RolesModule } from './roles/roles.module';
 @Module({
-  imports: [UsersModule, AuthModule, PrismaModule, ClientsModule],
+  imports: [UsersModule, AuthModule, PrismaModule, ClientsModule, RolesModule],
   controllers: [AppController],
   providers: [AppService, { provide: APP_FILTER, useClass: MyExceptionFilter }],
 })
